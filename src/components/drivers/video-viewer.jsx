@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-import 'styles/video.scss';
+import '../../styles/video.scss';
 import Loading from '../loading';
 
 class VideoViewer extends Component {

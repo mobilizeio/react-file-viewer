@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 
-import ReactDataGrid from 'react-data-grid';
+import DataGrid from 'react-data-grid';
+import 'react-data-grid/dist/react-data-grid.css';
 import CSV from 'comma-separated-values';
 
 class CsvViewer extends Component {
@@ -46,13 +47,12 @@ class CsvViewer extends Component {
   render() {
     const { rows, columns } = this.state;
     return (
-      <ReactDataGrid
-        columns={columns}
-        rowsCount={rows.length}
-        rowGetter={i => rows[i]}
-        minHeight={this.props.height || 650}
-        onGridSort={this.props.onGridSort}
+      <div>
+      <DataGrid
+        rows={rows}
+        rowKeyGetter={(row) => row.id}
       />
+      </div>
     );
   }
 }

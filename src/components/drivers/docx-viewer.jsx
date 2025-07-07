@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import mammoth from 'mammoth';
 
-import 'styles/docx.scss';
+import '../../styles/docx.scss';
 import Loading from '../loading';
 
 export default class extends Component {

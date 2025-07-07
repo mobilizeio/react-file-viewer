@@ -26,44 +26,28 @@ export default class PhotoViewerWrapper extends Component {
   }
 
   componentDidMount() {
-    this.loadPhoto();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.filePath !== prevProps.filePath) {
-      this.loadPhoto();
-    }
-  }
-
-  loadPhoto() {
-    this.setState({
-      imageLoaded: false,
-    });
-    const urlToLoad = this.props.filePath;
+    // spike on using promises and a different loader or adding three js loading manager
     const loader = new THREE.TextureLoader();
     loader.crossOrigin = '';
+    // load a resource
     loader.load(
-      urlToLoad,
-      (texture) => {
-        // If the filePath prop changed since we started loading,
-        // we need to abort because the new image will have already started loading.
-        if (this.props.filePath !== urlToLoad) {
-          return;
-        }
-
-        this.setState({
-          originalWidth: texture.image.width,
-          originalHeight: texture.image.height,
-          imageLoaded: true,
-          texture,
-        });
-      },
-      (xhr) => {
-        console.log(`${xhr.loaded / xhr.total * 100}% loaded`);
-      },
-      (xhr) => {
-        console.log('An error happened', xhr);
-      },
+        // resource URL
+        this.props.filePath,
+        // Function when resource is   loaded
+        (texture) => {
+          this.setState({
+            originalWidth: texture.image.width,
+            originalHeight: texture.image.height,
+            imageLoaded: true,
+            texture,
+          });
+        },
+        (xhr) => {
+          console.log(`${xhr.loaded / xhr.total * 100}% loaded`);
+        },
+        (xhr) => {
+          console.log('An error happened', xhr);
+        },
     );
   }
 
@@ -75,7 +59,7 @@ export default class PhotoViewerWrapper extends Component {
     const PhotoDriver = getPhotoDriver(originalWidth, originalHeight, this.props.fileType);
 
     return (
-      <PhotoDriver {...this.state} {...this.props} />
+        <PhotoDriver {...this.state} {...this.props} />
     );
   }
 }

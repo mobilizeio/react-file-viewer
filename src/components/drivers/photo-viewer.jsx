@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-import 'styles/photo-viewer.scss';
+import '../../styles/photo-viewer.scss';
 
 export default class PhotoViewer extends Component {
   componentDidMount() {

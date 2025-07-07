@@ -4,9 +4,12 @@ const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
+const ESLintPlugin = require('eslint-webpack-plugin');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   devtool: 'cheap-module-source-map',
 
   entry: {
@@ -22,16 +25,31 @@ module.exports = {
     filename: 'app/js/[name].bundle.js',
     publicPath: '/',
   },
+  // resolve: {
+  //   modules: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'example_files'), 'node_modules'],
+  //   extensions: ['.js', '.json', '.jsx'],
+  // },
   resolve: {
-    modules: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'example_files'), 'node_modules'],
     extensions: ['.js', '.json', '.jsx'],
+    modules: [
+      path.join(__dirname, 'node_modules')
+    ],
+    alias: {
+      "react/jsx-dev-runtime": "react/jsx-dev-runtime.js",
+      "react/jsx-runtime": "react/jsx-runtime.js"
+    },
+    fallback: {
+      "util": require.resolve('util'),
+      "path": false,
+      "stream": require.resolve('stream-browserify')
+    }
   },
 
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        include: path.resolve(__dirname, './src'),
+        exclude: /node_modules[/\\](?!react-data-grid[/\\]lib)/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
@@ -48,33 +66,18 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: () => [
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'not ie < 9',
-                  ],
-                }),
-              ],
-            },
           },
           {
             loader: 'sass-loader',
-            options: {
-              implementation: require('sass'),
-            },
           },
         ],
       },
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'eslint-loader',
-        include: path.resolve(__dirname, 'src'),
-        enforce: 'pre',
-      },
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   loader: 'eslint-loader',
+      //   include: path.resolve(__dirname, 'src'),
+      //   enforce: 'pre',
+      // },
       {
         test: [/\.wexbim$/, /\.jpg$/, /\.docx$/, /\.csv$/, /\.mp4$/, /\.xlsx$/, /\.doc$/, /\.avi$/, /\.webm$/, /\.mov$/, /\.mp3$/, /\.rtf$/, /\.pdf$/],
         loader: 'file-loader',
@@ -90,10 +93,18 @@ module.exports = {
   },
 
   plugins: [
+    new ESLintPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve(__dirname, './index.html'),
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    })
+
   ],
 };

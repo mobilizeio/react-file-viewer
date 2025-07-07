@@ -7,6 +7,7 @@ const BUILD_DIR = path.resolve(__dirname, './dist');
 const APP_DIR = path.resolve(__dirname, './src');
 
 const config = {
+  mode: 'production',
   entry: `${APP_DIR}/components`,
   output: {
     path: BUILD_DIR,
@@ -14,7 +15,6 @@ const config = {
     library: ['FileViewer'],
     libraryTarget: 'umd',
   },
-  devtool: 'source-map',
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
     extensions: ['.js', '.jsx', '.json'],
@@ -59,23 +59,20 @@ const config = {
           {
             loader: 'postcss-loader',
             options: {
-              ident: 'postcss',
-              plugins: () => [
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'not ie < 9',
-                  ],
-                }),
-              ],
+              ident: 'postcss'
+              // plugins: () => [
+              //   autoprefixer({
+              //     browsers: [
+              //       '>1%',
+              //       'last 4 versions',
+              //       'not ie < 9',
+              //     ],
+              //   }),
+              // ],
             },
           },
           {
             loader: 'sass-loader',
-            options: {
-              implementation: require('sass'),
-            },
           },
         ],
       },

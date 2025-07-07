@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import 'styles/main.scss';
+import '../styles/main.scss';
 import withFetching from './fetch-wrapper';
 
 import {
@@ -97,4 +97,3 @@ FileViewer.defaultProps = {
 };
 
 export default FileViewer;
-module.exports = FileViewer;
