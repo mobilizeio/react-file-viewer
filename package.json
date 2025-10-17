@@ -78,7 +78,7 @@
   },
   "dependencies": {
     "comma-separated-values": "^3.6.4",
-    "mammoth": "1.4.17",
+    "mammoth": "1.11.0",
     "prop-types": "^15.7.2",
     "react-data-grid": "^7.0.0-canary.33",
     "react-pdf": "^5.3.2",
