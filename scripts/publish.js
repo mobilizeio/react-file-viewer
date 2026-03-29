@@ -15,7 +15,7 @@ const appDir = fs.realpathSync(process.cwd());
 
 const buildCommand = 'npm run build';
 const branchCommand = 'git rev-parse --abbrev-ref HEAD';
-const jestCommand = `${path.join(appDir, 'node_modules/.bin/jest')} --env=jsdom --silent`;
+const jestCommand = `${path.join(appDir, 'node_modules/.bin/jest')} --silent`;
 
 inquirer.prompt([
   {

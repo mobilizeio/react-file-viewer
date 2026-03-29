@@ -3,7 +3,7 @@
 
 module.exports = {
   process() {
-    return 'module.exports = {};';
+    return { code: 'module.exports = {};' };
   },
   getCacheKey(fileData, filename) {
     return 'cssTransform';
