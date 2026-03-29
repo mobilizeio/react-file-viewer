@@ -80,14 +80,14 @@
     "webpack-dev-server": "^5.2.3"
   },
   "dependencies": {
+    "@e965/xlsx": "^0.20.3",
     "comma-separated-values": "^3.6.4",
     "mammoth": "^1.12.0",
     "prop-types": "^15.8.1",
     "react-data-grid": "7.0.0-canary.49",
     "react-pdf": "^10.4.1",
     "react-visibility-sensor": "^5.1.1",
-    "three": "0.183.2",
-    "xlsx": "^0.18.5"
+    "three": "0.183.2"
   },
   "overrides": {
     "node-sass": "npm:sass@^1.98.0"

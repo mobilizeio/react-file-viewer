@@ -1,7 +1,7 @@
 // Copyright (c) 2017 PlanGrid, Inc.
 
 import React, { Component } from 'react';
-import * as XLSX from 'xlsx';
+import * as XLSX from '@e965/xlsx';
 
 import CsvViewer from './csv-viewer';
 
