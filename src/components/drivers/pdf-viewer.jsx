@@ -5,9 +5,9 @@ import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
-import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
+import pdfjsWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs';
 
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorkerUrl;
 
 function PDFDriver(props) {
   const [numPages, setNumPages] = useState(null);
@@ -25,9 +25,21 @@ function PDFDriver(props) {
       >
         <Page pageNumber={pageNumber} />
       </Document>
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
+      <div>
+        <button
+          disabled={pageNumber <= 1}
+          onClick={() => setPageNumber(p => p - 1)}
+        >
+          Previous
+        </button>
+        <span>Page {pageNumber} of {numPages}</span>
+        <button
+          disabled={pageNumber >= numPages}
+          onClick={() => setPageNumber(p => p + 1)}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

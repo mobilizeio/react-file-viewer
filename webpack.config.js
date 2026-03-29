@@ -75,6 +75,13 @@ const config = {
           limit: 10000, // if file <=10kb
         },
       },
+      {
+        // Emit the pdfjs worker as a static asset so the import returns a URL
+        // string rather than going through new URL(import.meta.url), which
+        // triggers downstream webpack warnings.
+        test: /pdf\.worker(\.min)?\.mjs$/,
+        type: 'asset/resource',
+      },
     ],
   },
 };
