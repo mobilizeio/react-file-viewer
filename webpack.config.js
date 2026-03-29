@@ -48,7 +48,6 @@ const config = {
         amd: 'react-pdf',
       },
     },
-    /^pdfjs-dist\/.*/,
   ],
   module: {
     rules: [
