@@ -18,6 +18,10 @@ const config = {
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
     extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      'react/jsx-dev-runtime': 'react/jsx-dev-runtime.js',
+      'react/jsx-runtime': 'react/jsx-runtime.js',
+    },
   },
   externals: [
     {
@@ -58,18 +62,6 @@ const config = {
           },
           {
             loader: 'postcss-loader',
-            options: {
-              ident: 'postcss'
-              // plugins: () => [
-              //   autoprefixer({
-              //     browsers: [
-              //       '>1%',
-              //       'last 4 versions',
-              //       'not ie < 9',
-              //     ],
-              //   }),
-              // ],
-            },
           },
           {
             loader: 'sass-loader',

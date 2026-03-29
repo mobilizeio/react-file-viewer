@@ -14,8 +14,6 @@ module.exports = {
 
   entry: {
     app: [
-      'webpack-dev-server/client?http://localhost:8081/',
-      'webpack/hot/dev-server',
       path.resolve(__dirname, './src/app.js'),
     ],
   },
@@ -98,7 +96,6 @@ module.exports = {
       inject: true,
       template: path.resolve(__dirname, './index.html'),
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
     }),

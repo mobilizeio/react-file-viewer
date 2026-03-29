@@ -13,17 +13,21 @@ const config = require('../webpack.config.dev.js');
 
 const compiler = webpack(config);
 
-const devServer = new WebpackDevServer(compiler, {
+const devServerOptions = {
   hot: true,
-  publicPath: config.output.publicPath,
-  watchOptions: {
-    ignored: /node_modules/,
+  static: config.output.publicPath,
+  watchFiles: {
+    options: {
+      ignored: /node_modules/,
+    },
   },
-});
+  port: PORT,
+};
 
-devServer.listen(PORT, (err, result) => {
-  if (err) {
-    return console.log(err);
-  }
+const devServer = new WebpackDevServer(devServerOptions, compiler);
+
+devServer.start().then(() => {
   console.log('Development server listening on port ', PORT);
+}).catch(err => {
+  console.log(err);
 });
