@@ -13,3 +13,13 @@ node_modules
 dist
 lib
 .idea
+
+# Claude Code
+.claude/
+CLAUDE.md
+
+# Serena MCP
+.serena/
+
+# OpenSpec
+openspec/
