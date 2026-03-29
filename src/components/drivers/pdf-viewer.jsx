@@ -1,12 +1,13 @@
 // Copyright (c) 2017 PlanGrid, Inc.
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
+import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).href;
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 function PDFDriver(props) {
   const [numPages, setNumPages] = useState(null);
@@ -17,15 +18,17 @@ function PDFDriver(props) {
   }
 
   return (
-      <div>
-        <Document
-            file={props.filePath}
-            onLoadSuccess={onDocumentLoadSuccess}
-        >
-          <Page pageNumber={pageNumber} />
-        </Document>
-        <p>Page {pageNumber} of {numPages}</p>
-      </div>
+    <div>
+      <Document
+        file={props.filePath}
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        <Page pageNumber={pageNumber} />
+      </Document>
+      <p>
+        Page {pageNumber} of {numPages}
+      </p>
+    </div>
   );
 }
 
