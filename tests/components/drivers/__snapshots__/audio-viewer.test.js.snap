@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`AudioViewer matches snapshot 1`] = `
 <div
@@ -19,7 +19,7 @@ exports[`AudioViewer matches snapshot 1`] = `
       onCanPlay={[Function]}
       src="fake/path"
       style={
-        Object {
+        {
           "visibility": "hidden",
         }
       }
