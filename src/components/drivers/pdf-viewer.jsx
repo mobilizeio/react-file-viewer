@@ -1,11 +1,10 @@
 // Copyright (c) 2017 PlanGrid, Inc.
 
 import React, {useState} from 'react';
-// import VisibilitySensor from 'react-visibility-sensor';
 
-import { Document, Page } from 'react-pdf';
-import { pdfjs } from 'react-pdf';
-pdfjs.GlobalWorkerOptions.workerSrc = '../node_modules/pdfjs-dist/build/pdf.worker.min.js';
+import { Document, Page, pdfjs } from 'react-pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 function PDFDriver(props) {
   const [numPages, setNumPages] = useState(null);

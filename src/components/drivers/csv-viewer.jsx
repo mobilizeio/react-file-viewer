@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 
 import DataGrid from 'react-data-grid';
-import 'react-data-grid/dist/react-data-grid.css';
 import CSV from 'comma-separated-values';
 
 class CsvViewer extends Component {

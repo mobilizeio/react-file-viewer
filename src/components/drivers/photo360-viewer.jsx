@@ -47,7 +47,7 @@ export default class extends Component {
 
     // creation of a big sphere geometry
     this.sphere = new THREE.SphereGeometry(100, 100, 40);
-    this.sphere.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
+    this.sphere.applyMatrix4(new THREE.Matrix4().makeScale(-1, 1, 1));
 
     // creation of the sphere material
     this.sphereMaterial = new THREE.MeshBasicMaterial();
@@ -95,9 +95,9 @@ export default class extends Component {
 
     // moving the camera according to current latitude (vertical movement)
     // and longitude (horizontal movement)
-    this.camera.target.x = 500 * Math.sin(THREE.Math.degToRad(90 - latitude)) * Math.cos(THREE.Math.degToRad(this.state.longitude));
-    this.camera.target.y = 500 * Math.cos(THREE.Math.degToRad(90 - latitude));
-    this.camera.target.z = 500 * Math.sin(THREE.Math.degToRad(90 - latitude)) * Math.sin(THREE.Math.degToRad(this.state.longitude));
+    this.camera.target.x = 500 * Math.sin(THREE.MathUtils.degToRad(90 - latitude)) * Math.cos(THREE.MathUtils.degToRad(this.state.longitude));
+    this.camera.target.y = 500 * Math.cos(THREE.MathUtils.degToRad(90 - latitude));
+    this.camera.target.z = 500 * Math.sin(THREE.MathUtils.degToRad(90 - latitude)) * Math.sin(THREE.MathUtils.degToRad(this.state.longitude));
     this.camera.lookAt(this.camera.target);
 
     this.renderer.render(this.scene, this.camera);
