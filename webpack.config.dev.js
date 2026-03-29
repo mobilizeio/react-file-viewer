@@ -48,7 +48,10 @@ module.exports = {
     rules: [
       {
         test: /pdf\.worker(\.min)?\.mjs$/,
-        type: 'asset/resource',
+        type: 'asset/inline',
+        generator: {
+          dataUrl: { mimetype: 'application/javascript', encoding: 'base64' },
+        },
       },
       {
         test: /\.(js|jsx)$/,
