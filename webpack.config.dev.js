@@ -47,6 +47,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /pdf\.worker(\.min)?\.mjs$/,
+        type: 'asset/resource',
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules[/\\](?!react-data-grid[/\\]lib)/,
         loader: 'babel-loader',
