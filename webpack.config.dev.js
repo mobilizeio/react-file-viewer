@@ -30,6 +30,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
     modules: [
+      path.resolve(__dirname, './src'),
       path.join(__dirname, 'node_modules')
     ],
     alias: {
@@ -100,7 +101,7 @@ module.exports = {
       Buffer: ['buffer', 'Buffer'],
     }),
     new webpack.ProvidePlugin({
-      process: 'process/browser',
+      process: require.resolve('process/browser'),
     })
 
   ],
