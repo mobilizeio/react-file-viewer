@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "webpack -d --watch",
-    "build": "webpack --progress",
+    "build": "webpack --progress && node ./scripts/post-build.js",
     "start": "node ./scripts/start.js",
     "lint": "node_modules/.bin/eslint ./src/**/*.jsx",
     "test": "node_modules/.bin/jest --watch",

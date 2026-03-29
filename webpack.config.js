@@ -40,14 +40,6 @@ const config = {
         amd: 'react-dom',
       },
     },
-    {
-      'react-pdf': {
-        root: 'ReactPDF',
-        commonjs2: 'react-pdf',
-        commonjs: 'react-pdf',
-        amd: 'react-pdf',
-      },
-    },
   ],
   module: {
     rules: [
