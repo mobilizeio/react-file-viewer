@@ -9,7 +9,6 @@
     "url": "git+https://github.com/mobilizeio/react-file-viewer.git"
   },
   "scripts": {
-    "prepare": "webpack --progress",
     "dev": "webpack -d --watch",
     "build": "webpack --progress",
     "start": "node ./scripts/start.js",
