@@ -19,7 +19,6 @@ class CsvViewer extends Component {
             name: cell,
             resizable: true,
             sortable: true,
-            filterable: true,
           });
         });
       } else {
@@ -46,12 +45,10 @@ class CsvViewer extends Component {
   render() {
     const { rows, columns } = this.state;
     return (
-      <div>
       <DataGrid
+        columns={columns}
         rows={rows}
-        rowKeyGetter={(row) => row.id}
       />
-      </div>
     );
   }
 }

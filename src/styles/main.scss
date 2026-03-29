@@ -35,6 +35,23 @@
   margin: auto;
 }
 
+// react-data-grid canary.49: the injected CSS may be tree-shaken by webpack.
+// The React component still sets CSS variables (--template-columns, --row-height,
+// --row-width) as inline styles, so we can re-apply the critical layout rules here.
+[class*="canary49"][role="row"],
+[class*="canary49"][role="columnheader"] {
+  display: grid !important;
+  grid-template-columns: var(--template-columns) !important;
+}
+[class*="canary49"][role="gridcell"],
+[class*="canary49"][role="columnheader"] {
+  contain: layout style paint !important;
+  overflow: hidden;
+  padding: 0 8px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 #xbim-viewer {
   height: 100%;
   width: 100%
