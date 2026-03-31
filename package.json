@@ -85,7 +85,6 @@
     "mammoth": "^1.12.0",
     "prop-types": "^15.8.1",
     "react-data-grid": "7.0.0-canary.49",
-    "react-pdf": "^10.4.1",
     "react-visibility-sensor": "^5.1.1",
     "three": "0.183.2"
   },
@@ -109,9 +108,6 @@
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ],
-    "moduleNameMapper": {
-      "react-pdf": "<rootDir>/tests/__mocks__/react-pdf.js"
-    },
     "moduleDirectories": [
       "src",
       "node_modules"
