@@ -11,7 +11,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorkerUrl;
 
 function PDFDriver(props) {
   const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -23,23 +22,10 @@ function PDFDriver(props) {
         file={props.filePath}
         onLoadSuccess={onDocumentLoadSuccess}
       >
-        <Page pageNumber={pageNumber} />
+        {Array.apply(null, Array(numPages))
+          .map((x, i) => i + 1)
+          .map(page => <Page pageNumber={page} />)}
       </Document>
-      <div>
-        <button
-          disabled={pageNumber <= 1}
-          onClick={() => setPageNumber(p => p - 1)}
-        >
-          Previous
-        </button>
-        <span>Page {pageNumber} of {numPages}</span>
-        <button
-          disabled={pageNumber >= numPages}
-          onClick={() => setPageNumber(p => p + 1)}
-        >
-          Next
-        </button>
-      </div>
     </div>
   );
 }
