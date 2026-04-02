@@ -42,7 +42,24 @@ const config = {
     },
   ],
   module: {
+    parser: {
+      javascript: {
+        // Prevent webpack from replacing import.meta.url with the build
+        // machine's absolute file path in UMD output. pdfjs-dist uses
+        // import.meta.url for a Node.js canvas fallback that never runs
+        // in browser context. The worker URL is handled via asset/resource
+        // so import.meta is not needed.
+        importMeta: false,
+      },
+    },
     rules: [
+      {
+        test: /pdf\.worker(\.min)?\.mjs$/,
+        type: 'asset/inline',
+        generator: {
+          dataUrl: { mimetype: 'application/javascript', encoding: 'base64' },
+        },
+      },
       {
         test: /\.(js|jsx)$/,
         include: path.resolve(__dirname, './src'),

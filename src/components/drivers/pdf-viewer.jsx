@@ -1,16 +1,32 @@
 // Copyright (c) 2017 PlanGrid, Inc.
 
-import React from 'react';
+import React, { useState } from 'react';
+
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/TextLayer.css';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import pdfjsWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs';
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorkerUrl;
 
 function PDFDriver(props) {
+  const [numPages, setNumPages] = useState(null);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
+
   return (
-    <object
-      data={props.filePath}
-      type="application/pdf"
-      style={{ width: '100%', height: '100%' }}
-    >
-      <p>Unable to display PDF. <a href={props.filePath}>Download instead.</a></p>
-    </object>
+    <div>
+      <Document
+        file={props.filePath}
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        {Array.apply(null, Array(numPages))
+          .map((x, i) => i + 1)
+          .map(page => <Page pageNumber={page} />)}
+      </Document>
+    </div>
   );
 }
 
